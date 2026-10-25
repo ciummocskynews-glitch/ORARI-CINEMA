@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cinema a Bologna</title>
+<style>
+:root{--bg:#faf7f2;--card:#fff;--tx:#1d1b19;--mu:#6b655e;--ac:#b3261e;--bd:#e5dfd6;--ok:#1f7a4d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17150f;--card:#221f18;--tx:#f3eee6;--mu:#a49c90;--ac:#ff6b5f;--bd:#3a352b;--ok:#5fd39a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17150f;--card:#221f18;--tx:#f3eee6;--mu:#a49c90;--ac:#ff6b5f;--bd:#3a352b;--ok:#5fd39a;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Georgia,'Times New Roman',serif;line-height:1.4}
+main{max-width:660px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:26px;margin:0 0 2px}
+.by{font:400 13px system-ui,sans-serif;color:var(--mu);margin-left:6px}
+.srch{display:flex;gap:8px}.srch input{flex:1;min-width:0;padding:10px 12px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:15px system-ui,sans-serif}.srch button{padding:10px 16px;border:0;border-radius:10px;background:var(--ac);color:#fff;font:700 14px system-ui,sans-serif;cursor:pointer}
+.sub{color:var(--tx);font:13px system-ui,sans-serif;margin-bottom:14px}
+h2{font:600 13px system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);margin:22px 0 8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;cursor:pointer;text-align:left;color:inherit;font:inherit}
+.card:hover{border-color:var(--ac)}
+.card.sel{box-shadow:0 0 0 2px var(--ac) inset;border-color:var(--ac)}
+.t{font-weight:700}
+.m{font:12px system-ui,sans-serif;color:var(--mu)}
+.cin{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;margin-bottom:8px}
+.cin .h{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.pr{font:600 14px system-ui,sans-serif;color:var(--ok);white-space:nowrap}
+.times{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tm{padding:6px 11px;border-radius:8px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font:600 14px system-ui,sans-serif;cursor:pointer}
+.tm.sel{background:var(--ac);color:#fff;border-color:var(--ac)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{padding:6px 12px;border-radius:99px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:13px system-ui,sans-serif;cursor:pointer}
+.chip.sel{background:var(--ac);color:#fff;border-color:var(--ac)}
+.row{display:flex;justify-content:space-between;align-items:center;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 12px;font-family:system-ui,sans-serif}
+.qty{display:flex;align-items:center;gap:10px}
+.qty button{width:34px;height:34px;border-radius:50%;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:18px;cursor:pointer}
+.tot{background:var(--ac);color:#fff;border-radius:14px;padding:16px;margin-top:12px;font-family:system-ui,sans-serif}
+.tot b{font-size:24px}
+.tot button{margin-top:10px;width:100%;padding:12px;border:0;border-radius:10px;background:#fff;color:#b3261e;font:700 15px system-ui,sans-serif;cursor:pointer}
+:root{--gr:#e4f5df;--yl:#fff6c9}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--gr:#26362a;--yl:#3d3716}}
+:root[data-theme="dark"]{--gr:#26362a;--yl:#3d3716}
+.card,.cin,.plot,.row{background:var(--gr)}
+.card.top{background:var(--yl)}
+.fc{display:flex;flex-direction:column;gap:4px}.fc .card{flex:1}.lk{font:600 13px system-ui,sans-serif;color:var(--ac);text-decoration:none;padding:2px 4px}
+.acts{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.act{padding:4px 9px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:600 12px system-ui,sans-serif;text-decoration:none;cursor:pointer}
+.tt{color:inherit;text-decoration:underline;text-decoration-color:var(--ac);text-underline-offset:3px}
+.st{font:600 12px system-ui,sans-serif;margin-top:5px;color:var(--mu)}
+.stars{--p:calc(var(--v)/5*100%);display:inline-block;font-size:15px;letter-spacing:1px;line-height:1;background:linear-gradient(90deg,#e0a800 var(--p),#c4bcae var(--p));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.card.win{position:relative;overflow:hidden;animation:glow 2.4s ease-in-out infinite}
+.card.win::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.7),transparent);transform:skewX(-20deg);animation:shine 3.2s ease-in-out infinite;pointer-events:none}
+.card.win.sel{outline:2px solid var(--ac)}
+#plot{display:none}
+#mod{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:16px;padding-top:calc(16px + env(safe-area-inset-top,0px));padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+#mod[hidden]{display:none}
+.mbox{position:relative;background:var(--gr);color:var(--tx);border-radius:16px;max-width:520px;width:100%;max-height:100%;overflow:auto;padding:18px 16px 16px;box-shadow:0 12px 40px rgba(0,0,0,.4)}
+#mx{position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:50%;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:16px;cursor:pointer}
+.mbox p{margin:8px 0 0;font-size:15px}
+.mact{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.mbox .lk{font-size:15px;padding:2px 0}
+.mbtn{padding:10px 14px;border:0;border-radius:10px;background:var(--ac);color:#fff;font:700 14px system-ui,sans-serif;cursor:pointer}
+@keyframes glow{0%,100%{box-shadow:0 0 0 1.5px #e0a800,0 0 8px 1px rgba(224,168,0,.4)}50%{box-shadow:0 0 0 1.5px #ffcf33,0 0 20px 4px rgba(255,200,40,.75)}}
+@keyframes shine{0%{left:-60%}55%,100%{left:130%}}
+@media (prefers-reduced-motion:reduce){.card.win,.card.win::after{animation:none}.card.win{box-shadow:0 0 0 1.5px #e0a800,0 0 12px 2px rgba(224,168,0,.5)}}
+.aw{font:600 11px system-ui,sans-serif;margin-top:6px;line-height:1.3}
+.leg{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:12px;font:12px system-ui,sans-serif;color:var(--tx)}.leg span{display:inline-flex;align-items:center;gap:6px}.sw{display:inline-block;width:16px;height:16px;border-radius:4px;border:1px solid var(--bd)}.sw.win{background:var(--gr);box-shadow:0 0 0 1.5px #e0a800,0 0 8px 2px rgba(224,168,0,.6)}
+.cn{color:var(--ac)}
+.bd{font:700 11px system-ui,sans-serif;color:var(--ac);margin-bottom:4px}
+.plot{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:12px;padding:12px 14px;margin-top:16px}
+.plot p{margin:6px 0 0;font-size:15px}
+details{margin-top:22px;font:13px system-ui,sans-serif}
+summary{cursor:pointer;color:var(--mu)}
+.note{font:12px system-ui,sans-serif;color:var(--mu);margin-top:18px}
+
+
+
+:root{--top:#f1e6d0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--top:#2b2118}}
+:root[data-theme="dark"]{--top:#2b2118}
+body{background:linear-gradient(180deg,var(--top),var(--bg) 380px) no-repeat,var(--bg)}
+main{padding-top:70px}
+body::before{content:"";position:absolute;top:0;left:0;right:0;height:52px;z-index:-1;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2256%22%20height%3D%2252%22%20viewBox%3D%220%200%2056%2052%22%3E%3Cpath%20d%3D%22M0%200H56V30a28%2022%200%200%201-56%200Z%22%20fill%3D%22%23b3261e%22/%3E%3C/svg%3E") repeat-x top left}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body::before{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2256%22%20height%3D%2252%22%20viewBox%3D%220%200%2056%2052%22%3E%3Cpath%20d%3D%22M0%200H56V30a28%2022%200%200%201-56%200Z%22%20fill%3D%22%238f1d17%22/%3E%3C/svg%3E")}}
+:root[data-theme="dark"] body::before{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2256%22%20height%3D%2252%22%20viewBox%3D%220%200%2056%2052%22%3E%3Cpath%20d%3D%22M0%200H56V30a28%2022%200%200%201-56%200Z%22%20fill%3D%22%238f1d17%22/%3E%3C/svg%3E")}
+</style>
+</head>
+<body>
+<main>
+<h1>🎬 Cinema a Bologna <span class="by">by Claudio</span></h1>
+<div class="sub">Programmazione di sabato 24 ottobre 2026. Scegli film, cinema e orario.</div>
+<h2 style="color:var(--tx)">Cerca cinema</h2>
+<div class="srch"><input id="q" type="search" placeholder="Nome del cinema o zona, es. Rialto" autocomplete="off"><button id="go">Cerca</button></div>
+<div id="cres"></div>
+<h2>1 · Film</h2><div class="grid" id="films"></div>
+<div class="leg"><b>Legenda:</b><span><i class="sw" style="background:var(--yl)"></i>Giallo: i 5 film più visti (incassi)</span><span><i class="sw win"></i>Bordo dorato che brilla: premi vinti</span><span><i class="sw" style="background:var(--gr)"></i>Verde: gli altri film</span><span>★ Stelle: voto della critica</span></div>
+<div id="s2" hidden>
+<div class="plot" id="plot"></div>
+<h2>2 · Zona</h2><div class="chips" id="zones"></div>
+<h2>3 · Cinema e orario</h2><div id="shows"></div>
+</div>
+<div id="s3" hidden>
+<h2>4 · Biglietti</h2>
+<div class="row"><div><b id="who"></b><div class="m" id="price"></div></div><div class="qty"><button id="mi">−</button><b id="n">1</b><button id="pl">+</button></div></div>
+<div class="tot"><div id="sum" style="font-size:13px;opacity:.9"></div><b id="total"></b><button id="buy">Conferma prenotazione</button></div>
+</div>
+<div id="mod" hidden><div class="mbox"><button id="mx" aria-label="Chiudi">✕</button><div id="mc"></div></div></div>
+<details><summary>Tutti i cinema di Bologna (<span id="cnt"></span>)</summary><div id="all" class="m" style="margin-top:8px;line-height:1.8"></div></details>
+<p class="note">Orari presi dal listino di MyMovies per Bologna di sabato 24 ottobre 2026. L’elenco dei cinema e gli indirizzi (Bologna e provincia, 48 sale) vengono da ComingSoon. I film con orari verificati sono 20 e per The Space c’è anche il numero della sala (dal sito ComingSoon). Gli altri film dell’elenco hanno la scritta «orari sul sito» e, nella scheda, il link agli orari di oggi su MyMovies: le pagine che ho consultato per quei titoli non erano aggiornate a oggi. I cinema senza orari compaiono solo nell’elenco. I prezzi indicati sono quelli del biglietto intero 2D: Circuito Cinema Bologna (Europa, Odeon, Rialto, Roma d’Essai) 10 €, ridotto 8 €, 3D 12 €; The Space 10,90 € (da 6,70 € con le offerte online); Pop Up Cinema da 7,29 €. Per gli altri cinema controlla in sala. I prezzi e gli orari di <i>Digger</i> vengono dal sito del Circuito Cinema Bologna. Il prezzo medio del biglietto intero a Bologna è circa 9,90 € (da 5 a 16 €), secondo ComingSoon. La prenotazione è dimostrativa, non fa nessun pagamento. “VO” indica la versione originale con sottotitoli.</p>
+</main>
+<script>
+var CIN={ANT:["Antoniano","Saragozza"],BEL:["Bellinzona d’Essai","Altre zone"],CHA:["Chaplin","Saragozza"],PER:["Cinema Perla","San Donato"],TIV:["Cinema Teatro Tivoli","San Donato"],CER:["Cineteca – Sala Cervi","Centro"],EUR:["Europa cinema","Altre zone",10],FOS:["Fossolo","Savena"],GAL:["Galliera","Navile"],LUM:["Lumiere","Navile"],MOD:["Modernissimo","Centro"],NOS:["Nuovo Nosadella","Centro"],ODE:["Odeon","Centro",10],ORI:["Orione","Borgo Panigale"],ARL:["Pop Up Cinema Arlecchino","Navile",7.29],BRI:["Pop Up Cinema Bristol","Savena",7.29],JOL:["Pop Up Cinema Jolly","Centro",7.29],MED:["Pop Up Cinema Medica 4K","Centro",7.29],RIA:["Rialto studio","Centro",10],ROM:["Roma d’Essai","Centro",10],SPA:["The Space Cinema Bologna","Altre zone",10.9],KUR:["Kursaal","Alto Reno Terme"],UMR:["UCI Cinemas Meridiana","Casalecchio di Reno"],JCS:["Jolly (Castel San Pietro)","Castel San Pietro Terme"],DBC:["Don Bosco (Castello d’Argile)","Castello d’Argile"],ITC:["Italia (Castenaso)","Castenaso"],MAT:["Mattei","Castiglione dei Pepoli"],VER:["Verdi","Crevalcore"],CAP:["Cappuccini","Imola"],CBC:["Centrale – Sala BCC","Imola"],PED:["Cinema Pedagna","Imola"],OSS:["Cinema Teatro Osservanza","Imola"],CRI:["Cristallo","Imola"],DFI:["Don Fiorentini Cinema Teatro","Imola"],PRG:["La Pergola","Lizzano in Belvedere"],VIT:["Vittoria","Loiano"],NMA:["Nuovo Mandrioli","Minerbio"],MAS:["Massarenti","Molinella"],AUR:["Aurora","Monghidoro"],MSC:["Madison Cinemas Star City","Pianoro"],AGO:["Agorà Estivo","Sala Bolognese"],GIA:["Giada Cinecomfort Bi-Space","San Giovanni in Persiceto"],ISP:["Italia (San Pietro in Casale)","San Pietro in Casale"],CEC:["Century CineCi","Sant’Agata Bolognese"],MRC:["Marconi","Sasso Marconi"],AST:["Astra/Star Multisala","Valsamoggia"],CMX:["Cinemax","Valsamoggia"],NVE:["Nuovo Vergato","Vergato"]};
+/*DATA_START*/var D=[
+["Ragione e Sentimento","Drammatico","CHA 16:00 18:45 21:15;ODE 15:30 18:15 21:00;SPA 16:00/4 20:50/5"],
+["Caro mondo crudele","Drammatico","EUR 16:30 18:45 21:00;SPA 19:25/9 00:25/4"],
+["Primetime","Drammatico","MED 15:00 19:30 17:15v 21:45v;SPA 23:55/5"],
+["Clayface","Horror · Azione (VM 14)","SPA 15:50/8 19:00/4 20:20/6 22:00/9 22:55/6"],
+["Wildwood – I segreti del bosco proibito","Animazione","ARL 14:00 19:30v;SPA 14:05/6 16:15/9 17:45/5 20:15/3"],
+["L’assurda storia della Gialappa’s Band","Documentario","ODE 16:15 18:30 20:45;SPA 17:00/2 19:40/2 22:15/2"],
+["Je So’ Pazzo","Biografico","BRI 16:45 19:00 21:15;FOS 17:45 19:45 21:45;ODE 16:30 18:45 21:00;SPA 14:30/2 17:35/3 21:10/8 00:40/9"],
+["Urchin","Drammatico","NOS 15:45"],
+["Klara e il Sole","Drammatico · Fantascienza","NOS 17:15 19:20 21:30;SPA 17:20/7"],
+["L’estranea","Thriller","FOS 16:30 18:45 21:00;ODE 16:15 18:45 21:15;RIA 16:20 18:40 21:00;SPA 17:10/6 21:40/4"],
+["Naza","Documentario","ARL 18:00 22:00v"],
+["Fatherland","Drammatico","BEL 16:30 18:30 21:00;LUM 17:30 20:00 22:00;ROM 16:00 17:45 19:30 21:15;SPA 14:00/9"],
+["Se ami qualcuno dillo","Commedia","FOS 15:30"],
+["Mammina","Horror (VM 14)","SPA 20:00/7 22:30/7 23:45/8 00:55/7"],
+["Il tempo di Anne","Commedia","LUM 19:30"],
+["La bambola","Commedia","GAL 19:30"],
+["Carlo Acutis – Il giovane santo","Documentario","SPA 15:30/5"],
+["Taddeo l’Esploratore e la Lampada Magica","Animazione · Avventura","SPA 15:05/3"],
+["Zustissia","Drammatico","GAL 21:30;LUM 17:15 21:45;NOS 17:30 19:30;SPA 14:25/7 23:15/3"],
+["Digger","Commedia · Drammatico","RIA 18:35 21:10"],
+["Frankie e le creature dimenticate","Animazione · Avventura",""],
+["Street Fighter","Azione · Avventura",""],
+["Heart of the Beast – Nel profondo selvaggio","Azione · Avventura · Thriller",""],
+["Whalefall – Nella Balena","Thriller · Avventura",""],
+["Odissea","Avventura · Azione · Storico",""],
+["Coyote vs. Acme","Animazione · Commedia",""],
+["The Invite – Il piacere è tutto nostro","Commedia · Drammatico",""],
+["Calle Malaga","Drammatico",""],
+["Palestina 36 – Quando tutto ebbe inizio","Drammatico · Storico",""],
+["Ritorno a Buenos Aires","Drammatico",""],
+["Serpenti","Drammatico",""],
+["Rider","Drammatico",""],
+["Possible Love","Drammatico",""],
+["Un po’ di luce","Drammatico",""],
+["Maigret, l’amore e la morte","Giallo",""],
+["L’albero di molto lontano","Avventura · Fantasy · Family",""],
+["The Social – Il prezzo della verità","Drammatico · Biografico",""],
+["The Echo Chamber","Drammatico · Sentimentale",""],
+["Un giorno senza donne","Documentario",""],
+["Bad Apples","In programmazione",""],
+["Auber 89","In programmazione",""],
+["I diavoli (1970)","Drammatico",""]
+];
+var MID={"Frankie e le creature dimenticate": 117644, "Street Fighter": 118678, "Heart of the Beast – Nel profondo selvaggio": 119749, "Whalefall – Nella Balena": 119527, "Odissea": 116468, "Coyote vs. Acme": 119782, "The Invite – Il piacere è tutto nostro": 119773, "Calle Malaga": 117106, "Palestina 36 – Quando tutto ebbe inizio": 118130, "Ritorno a Buenos Aires": 119928, "Serpenti": 119960, "Rider": 119880, "Possible Love": 119937, "Un po’ di luce": 119914, "Maigret, l’amore e la morte": 120078, "L’albero di molto lontano": 119799, "The Social – Il prezzo della verità": 118233, "The Echo Chamber": 119633, "Un giorno senza donne": 120074, "Bad Apples": 120115, "Auber 89": 120056, "I diavoli (1970)": 7385};
+/*DATA_END*/
+var PLOT={"L’albero di molto lontano":"Alcuni ragazzi scoprono un albero magico in un bosco, abitato da creature bizzarre. In cima ai suoi rami si aprono ogni volta mondi diversi, tutti da esplorare. Avventura fantasy tratta dai libri di Enid Blyton.","The Social – Il prezzo della verità":"Seguito di The Social Network: ricostruisce lo scandalo dei documenti interni di Facebook rivelati nel 2021 e il caso della ex dipendente Frances Haugen.","La bambola":"Rémi vende metri di finto prato e non ha mai superato l’abbandono della donna che amava: per compagnia ha una bambola, Audrey. Quando arriva una nuova collega, Audrey prende vita, e Rémi si trova a gestire due donne in carne e ossa, in casa e al lavoro. Commedia francese surreale.",
+"Ragione e Sentimento":"Dopo la morte del padre, le sorelle Elinor e Marianne Dashwood perdono la casa e si ritrovano quasi senza mezzi. Tra la prudenza dell’una e la passione dell’altra, cercano il loro posto in una società che decide per le donne. Nuovo adattamento del romanzo di Jane Austen.",
+"Caro mondo crudele":"Toscana, 1999. La dodicenne Giovanna perde il suo unico amico, Mirko, e non crede alla versione ufficiale sulla sua morte. Decide di indagare da sola, tra lutto, bullismo e ironia nera.",
+"Primetime":"Nel 2006 il giornalista Chris Hansen conduce un programma tv che smaschera predatori sessuali con attori esca. Il successo lo spinge a cercare casi sempre più clamorosi, e il confine tra informazione e spettacolo si fa ambiguo.",
+"Clayface":"Un attore di successo viene sfigurato dopo uno sgarro a un boss di Gotham. Per rimediare prova una cura sperimentale che gli dà il potere di cambiare forma, ma anche una furia sempre più difficile da controllare.",
+"Wildwood – I segreti del bosco proibito":"A Portland il fratellino di Prue viene rapito da uno stormo di corvi e portato in una foresta magica. Prue lo insegue in un mondo di banditi, coyote e regine spietate. Animazione in stop motion dei creatori di Coraline.",
+"L’assurda storia della Gialappa’s Band":"Walter Veltroni racconta quarant’anni di carriera del trio che ha inventato Mai Dire Gol e Mai Dire Banzai. Tra ricordi e sketch storici, mostra come è cambiata l’Italia attraverso la comicità.",
+"Je So’ Pazzo":"Biografia di Pino Daniele, dall’infanzia difficile a Napoli fino al concerto del 1981 davanti a 200.000 persone. Racconta la musica, gli amori e il rapporto irrisolto con il padre.",
+"Klara e il Sole":"Klara è un’Amica Artificiale in vetrina in un negozio. Viene scelta da Josie, una ragazza malata, e farà di tutto per salvarla e tenere unita la famiglia. Dal romanzo di Kazuo Ishiguro, regia di Taika Waititi.",
+"L’estranea":"Una donna si presenta di notte dalla figlia ventenne per rivelarle un segreto di famiglia. Nel 1999 aveva stretto un patto con una misteriosa estranea, e ora quel debito torna a farsi pagare. Thriller horror italiano.",
+"Naza":"Documentario degli autori di No Other Land. Raccoglie le testimonianze anonime di militari e agenti dell’intelligence israeliani sulla sorveglianza e sulle uccisioni di civili palestinesi a Gaza.",
+"Fatherland":"Guerra fredda: lo scrittore Thomas Mann torna in Germania con la figlia Erika, dopo l’esilio negli Stati Uniti, per un ciclo di conferenze su Goethe. Attraversa il Paese diviso tra Ovest ed Est. Regia di Pawel Pawlikowski.",
+"Se ami qualcuno dillo":"Dopo un infarto e un coma, Sergio, uomo duro e anaffettivo, si risveglia senza memoria. Ripartendo da zero ha l’occasione di diventare un uomo nuovo, accanto alla compagna, all’ex moglie e al figlio.",
+"Mammina":"La piccola Bela evoca un’entità oscura che chiama «altra mamma». La creatura prende le sembianze di sua madre e inizia a perseguitare tutta la famiglia. Horror in stile Blumhouse.",
+"Whalefall – Nella Balena":"Jay si immerge in California per cercare i resti del padre, ma viene inghiottito da un capodoglio. Ha solo un’ora di ossigeno per salvarsi. Survival movie claustrofobico.",
+"Street Fighter":"1993: i vecchi amici Ryu e Ken sono richiamati sul ring da Chun-Li per un torneo clandestino. Dietro i combattimenti si nasconde un complotto. Nuovo film tratto dal celebre videogioco.",
+"Digger":"Un magnate del petrolio provoca un disastro ambientale in Groenlandia e cerca di rimediare con l’aiuto di uno scienziato. Satira apocalittica di Alejandro G. Iñárritu con Tom Cruise.",
+"Zustissia":"Sardegna, 1991. Il pastore Beniamino Zuncheddu è condannato all’ergastolo per una strage e si dichiara innocente. Per anni un avvocato lavora per riaprire il caso. Ispirato a una storia vera.",
+"Taddeo l’Esploratore e la Lampada Magica":"Taddeo, Sara e la Mummia trovano una lampada magica e viaggiano nel tempo, dal Perù del 1502 alla Grecia, per salvare la Storia prima che venga riscritta. Avventura animata per famiglie.",
+"Odissea":"Christopher Nolan porta sullo schermo il ritorno di Ulisse a Itaca dopo la guerra di Troia, tra Polifemo, Sirene e Circe. Intanto a casa Penelope e Telemaco difendono il trono dai pretendenti.",
+"Heart of the Beast – Nel profondo selvaggio":"Un ex militare con stress post-traumatico precipita con l’aereo in Alaska insieme al suo cane. In mezzo alla natura selvaggia i due devono contare l’uno sull’altro per sopravvivere. Con Brad Pitt.",
+"Frankie e le creature dimenticate":"Frankie, una creatura cucita da un professore pazzo, lascia il castello per diventare una star di un circo itinerante. Avventura animata su pregiudizi e solitudine.",
+"Il tempo di Anne":"Anne pensava di godersi la libertà, ma la figlia Louise, lasciata dal fidanzato, torna a vivere con lei. Intanto scopre che diventerà nonna. Commedia con Sophie Marceau.",
+"The Invite – Il piacere è tutto nostro":"Una coppia in crisi invita a cena i vicini per chiedere loro di fare meno rumore. La serata si trasforma in un gioco di rivelazioni e tentazioni. Commedia diretta da Olivia Wilde.",
+"Palestina 36 – Quando tutto ebbe inizio":"Palestina, 1936. Durante la rivolta contro il dominio britannico, il giovane Yusuf si muove tra il villaggio e Gerusalemme. Un film corale sulle origini del conflitto.",
+"Serpenti":"Paolo confessa di aver ucciso la moglie ma nessuno vuole arrestarlo. Tra burocrazia e assurdo, si trova in un paradosso kafkiano. Commedia drammatica di Roberto De Paolis.",
+"La città dei vivi":"Roma, periferia. Luca, ventitré anni, cerca la sua strada e finisce in un giro di feste in cui una notte si spezza la sua vita. Ispirato a un delitto del 2016 e al romanzo di Nicola Lagioia.",
+"Verity":"Una scrittrice in difficoltà viene assunta per completare i romanzi di un’autrice famosa, ora paralizzata. Nella sua casa trova appunti inquietanti e si avvicina al marito di lei. Thriller con Anne Hathaway.",
+"Carlo Acutis – Il giovane santo":"Documentario sulla vita di Carlo Acutis, morto a quindici anni nel 2006. Genitori, nonna e amici raccontano un ragazzo normale e generoso, senza retorica.",
+"Coyote vs. Acme":"Il Coyote fa causa all’azienda ACME per i suoi prodotti difettosi, assumendo un avvocato. Nasce una battaglia legale che coinvolge i personaggi dei Looney Tunes. Animazione e commedia.",
+"Ritorno a Buenos Aires":"Dopo trentatré anni in Italia, un medico torna in Argentina per testimoniare contro i militari che lo torturarono. Dovrà fare i conti con il senso di colpa. Regia di Marco Bechis.",
+"Una storia":"Quando la figlia parte per studiare, Erika e Mauro si ritrovano soli in una casa vuota. La crisi li costringe a guardarsi davvero e a capire se il loro amore può cambiare. Esordio alla regia di Anna Foglietta.",
+"Balcanica":"Un direttore d’orchestra afghano e suo figlio fuggono lungo la rotta balcanica perché la musica è stata vietata. Lungo il viaggio incontrano una dottoressa italiana.",
+"Nessun dolore":"Dopo una tragedia che ha causato involontariamente, Davide compie scelte estreme spinto dal senso di colpa. Cerca redenzione grazie al legame con Elsa. Regia di Gianni Amelio.",
+"Santiago – Un cammino per ricominciare":"Un’insegnante sospesa dal lavoro accompagna un ragazzo in un cammino di tre mesi verso Santiago di Compostela, scelto in alternativa al carcere. Dal viaggio nasce un percorso per entrambi.",
+"I figli della scimmia":"Dario è padre di un bambino disabile e si lega al nipote adolescente, in cui ritrova il figlio che avrebbe voluto. Questo rapporto mette in crisi l’equilibrio dell’intera famiglia.",
+"Calle Malaga":"A Tangeri l’anziana Maria Angeles scopre che la figlia vuole vendere la sua casa. Scappa dalla residenza per anziani e prova a ricostruire la sua vita. Con Carmen Maura.",
+"Urchin":"Mike, un senzatetto, cerca di restare sobrio e di cambiare vita, ma l’autodistruzione è sempre dietro l’angolo. Dramma sociale con sfumature oniriche, esordio alla regia di Harris Dickinson.",
+"I racconti del giardino incantato":"Film d’animazione per bambini. Non ho trovato una trama dettagliata.",
+"Un giorno senza donne":"Documentario sulla mattina del 1975 in cui il 90% delle donne islandesi si astenne dal lavoro e dalla cura della casa, paralizzando il Paese.",
+"Il canto di Alina":"Johana, profuga moldava, scappa da uomini violenti rapendo un tassista friulano. Insieme viaggiano verso il confine austriaco, mentre lei assume l’identità dell’amica Alina.",
+"Rider":"Capodanno a Milano: il rider Sami consegna sushi in una villa e conosce Nia. Una decisione impulsiva ne mette in discussione il futuro. Musical rap e hip hop.",
+"I diavoli (1970)":"Francia, 1634. Il prete libertino Urbain Grandier viene accusato di stregoneria dopo il caso delle suore di Loudun. Capolavoro scandaloso di Ken Russell, ripresentato in versione restaurata.",
+"Il dottor Stranamore (1964)":"Un generale impazzito ordina un attacco nucleare all’Unione Sovietica. Il presidente americano cerca di fermarlo nella War Room. Classico satirico di Stanley Kubrick.",
+"L’infernale Quinlan (1958)":"A un confine tra Messico e Stati Uniti un’autobomba uccide un magnate. Il poliziotto messicano Vargas scopre che il collega Quinlan fabbrica prove false. Cult di Orson Welles.",
+"Essi vivono (1988)":"Un operaio trova degli occhiali che rivelano la verità: alieni travestiti da umani controllano la società con messaggi nascosti. Fantascienza e satira di John Carpenter.",
+"L’eclisse (1962)":"Dopo la fine di una storia d’amore, una giovane donna inizia una relazione con un agente di borsa, solo per evadere dalla routine. Capolavoro di Michelangelo Antonioni con Monica Vitti e Alain Delon.",
+"Trainspotting (1996)":"Mark e i suoi amici tossicodipendenti vivono ai margini di Edimburgo, tra furti e ricadute. Dal romanzo di Irvine Welsh, regia di Danny Boyle."
+};
+var RANK={"Naza":1,"Mammina":2,"Heart of the Beast – Nel profondo selvaggio":3,"Je So’ Pazzo":4,"L’estranea":5};
+var INC={"Naza":"5,2 milioni di € in totale (al 22 ottobre)","Mammina":"3,4 milioni di € in totale (al 21 ottobre)","Heart of the Beast – Nel profondo selvaggio":"oltre 3,3 milioni di € in totale (al 18 ottobre)","Je So’ Pazzo":"2,1 milioni di € in totale (al 22 ottobre), primo film del giorno","L’estranea":"oltre 2 milioni di € in totale (al 21 ottobre)","Street Fighter":"circa 500 mila € in totale (al 22 ottobre)","Clayface":"circa 100 mila € nel primo giorno, secondo film del 22 ottobre","Ragione e Sentimento":"circa 70 mila € nel primo giorno, terzo film del 22 ottobre"};
+var LINK={"Ragione e Sentimento":"2026/ragione-e-sentimento","Caro mondo crudele":"2026/caro-mondo-crudele","Primetime":"2026/primetime","Clayface":"2026/clayface","Wildwood – I segreti del bosco proibito":"2026/wildwood-i-segreti-del-bosco-proibito","L’assurda storia della Gialappa’s Band":"2026/lassurda-storia-della-gialappas-band","Je So’ Pazzo":"2026/je-so-pazzo","Urchin":"2025/urchin","Klara e il Sole":"2026/klara-e-il-sole","L’estranea":"2026/lestranea","Naza":"2026/naza","Fatherland":"2026/fatherland","Se ami qualcuno dillo":"2026/se-ami-qualcuno-dillo","Mammina":"2026/other-mommy","Il tempo di Anne":"2026/il-tempo-di-anne","La bambola":"2026/la-bambola","Carlo Acutis – Il giovane santo":"2026/carlo-acutis-il-giovane-santo","Zustissia":"2026/zustissia"};
+var CAST={"Whalefall – Nella Balena":"Austin Abrams, Josh Brolin, Elisabeth Shue","Frankie e le creature dimenticate":"Asa Butterfield, Joel Fry, Alison Steadman","Ritorno a Buenos Aires":"Adriano Giannini, Ana Celentano","Rider":"Lorenzo Aloi, Margherita Vicario, Claudio Santamaria","Possible Love":"Jeon Do-yeon, Sol Kyung-gu, Cho Yeo-jeong","Maigret, l’amore e la morte":"Denis Podalydès","L’albero di molto lontano":"Andrew Garfield, Claire Foy, Nicola Coughlan, Rebecca Ferguson","The Social – Il prezzo della verità":"Mikey Madison, Jeremy Allen White, Jeremy Strong","The Echo Chamber":"Luca Marinelli, Alicia Vikander, Susan Sarandon","Ragione e Sentimento":"Daisy Edgar-Jones, Esmé Creed-Miles","Caro mondo crudele":"Aurora Malianni, Francesco Turbanti","Primetime":"Robert Pattinson, Merritt Wever, Skyler Gisondo","Je So’ Pazzo":"Massimiliano Caiazzo, Mariasole Pollio","Klara e il Sole":"Jenna Ortega, Amy Adams, Steve Buscemi","L’estranea":"Jasmine Trinca, Valeria Bruni Tedeschi, Adriano Giannini","Se ami qualcuno dillo":"Claudia Gerini, Edoardo Leo, Giovanna Mezzogiorno","Zustissia":"Michele Riondino, Fabrizio Ferracane","La bambola":"Vincent Macaigne, Cécile De France","Mammina":"Jessica Chastain","Digger":"Tom Cruise","Odissea":"Matt Damon, Tom Holland, Anne Hathaway, Zendaya, Robert Pattinson, Charlize Theron, Lupita Nyong’o","Heart of the Beast – Nel profondo selvaggio":"Brad Pitt","Verity":"Anne Hathaway, Dakota Johnson, Josh Hartnett","Street Fighter":"Andrew Koji, Noah Centineo, Callina Liang, Jason Momoa, Cody Rhodes, David Dastmalchian","Coyote vs. Acme":"John Cena, Will Forte, Lana Condor","The Invite – Il piacere è tutto nostro":"Olivia Wilde, Seth Rogen, Penélope Cruz, Edward Norton","Fatherland":"Hanns Zischler, Sandra Hüller","Calle Malaga":"Carmen Maura","Il tempo di Anne":"Sophie Marceau","Clayface":"Tom Rhys Harries","Trainspotting (1996)":"Ewan McGregor, Ewen Bremner, Jonny Lee Miller, Kevin McKidd, Robert Carlyle, Kelly Macdonald","Il dottor Stranamore (1964)":"Peter Sellers, George C. Scott, Sterling Hayden","L’infernale Quinlan (1958)":"Orson Welles, Charlton Heston, Janet Leigh","Essi vivono (1988)":"Roddy Piper, Keith David, Meg Foster","L’eclisse (1962)":"Monica Vitti, Alain Delon","I diavoli (1970)":"Oliver Reed, Vanessa Redgrave","Urchin":"Frank Dillane","Wildwood – I segreti del bosco proibito":"voci originali di Peyton Elizabeth Lee, Jacob Tremblay, Carey Mulligan, Jemaine Clement","L’assurda storia della Gialappa’s Band":"Marco Santin, Giorgio Gherarducci, Carlo Taranto","Palestina 36 – Quando tutto ebbe inizio":"Hiam Abbass, Jeremy Irons","Naza":"documentario, senza cast","Carlo Acutis – Il giovane santo":"documentario, senza cast","Un giorno senza donne":"documentario, senza cast"};
+var CRIT={"La bambola":2.38,"Ragione e Sentimento":3.5,"Caro mondo crudele":2.86,"Primetime":2.53,"Clayface":3.5,"Wildwood – I segreti del bosco proibito":4.13,"L’assurda storia della Gialappa’s Band":2.67,"Je So’ Pazzo":3.08,"Klara e il Sole":2.0,"L’estranea":3.38,"Naza":4.2,"Fatherland":3.97,"Se ami qualcuno dillo":2.2,"Mammina":2.0,"Il tempo di Anne":2.44,"Urchin":2.78,"Il canto di Alina":2.83,"Heart of the Beast – Nel profondo selvaggio":2.83,"Santiago – Un cammino per ricominciare":2.8,"Rider":2.5,"Digger":2.89,"Ritorno a Buenos Aires":3.11,"Verity":1.5,"Odissea":4.09,"The Invite – Il piacere è tutto nostro":3.52,"La città dei vivi":3.24,"Zustissia":3.0,"Balcanica":3.04,"Whalefall – Nella Balena":2.7,"Frankie e le creature dimenticate":2.88,"Street Fighter":2.38,"Serpenti":3.31,"Nessun dolore":3.32,"Palestina 36 – Quando tutto ebbe inizio":3.5,"Una storia":3.23,"Calle Malaga":2.71,"I figli della scimmia":3.62,"Carlo Acutis – Il giovane santo":3.5,"Taddeo l’Esploratore e la Lampada Magica":3.0,"Il dottor Stranamore (1964)":4.25,"Essi vivono (1988)":3.25,"Trainspotting (1996)":3.5,"L’infernale Quinlan (1958)":4.25};
+var CRFB={"Carlo Acutis – Il giovane santo":1,"Taddeo l’Esploratore e la Lampada Magica":1,"Il dottor Stranamore (1964)":1,"Essi vivono (1988)":1,"Trainspotting (1996)":1,"L’infernale Quinlan (1958)":1};
+function stars(t){var v=CRIT[t];if(v==null)return '<div class="st"><span class="stars" style="--v:0">★★★★★</span> n.d. critica</div>';return '<div class="st"><span class="stars" style="--v:'+v+'">★★★★★</span> '+v.toFixed(1).replace('.',',')+' critica</div>'}
+function starLine(t){var v=CRIT[t];if(v==null)return '<div class="m" style="margin-top:6px">Critica: <span class="stars" style="--v:0">★★★★★</span> voto non disponibile</div>';return '<div class="m" style="margin-top:6px">Critica: <span class="stars" style="--v:'+v+'">★★★★★</span> '+v.toFixed(2).replace('.',',')+' su 5 ('+(CRFB[t]?'voto della redazione MYmovies':'critica, fonte MYmovies')+')</div>'}
+var AW={"Fatherland":"Cannes 2026: miglior regia (ex aequo)","Naza":"Venezia 2026: Premio Speciale della Giuria","I figli della scimmia":"Venezia 2026 (Orizzonti): Coppa Volpi a Riccardo Scamarcio e miglior sceneggiatura","Balcanica":"Venezia 2026: Premio del Pubblico (Giornate degli Autori)","Calle Malaga":"Venezia 2025: Premio degli Spettatori (Spotlight)","Urchin":"Cannes 2025 (Un Certain Regard): miglior interpretazione a Frank Dillane","Trainspotting (1996)":"Nomination Oscar e premio BAFTA per la sceneggiatura","Il dottor Stranamore (1964)":"4 nomination agli Oscar, BAFTA come miglior film","L’eclisse (1962)":"Cannes 1962: Premio speciale della giuria"};
+function awLine(t){return AW[t]?'<div class="m" style="margin-top:6px">🏆 Premi: '+AW[t]+'</div>':''}
+function castLine(t){return '<div class="m" style="margin-top:6px">'+(CAST[t]?'Protagonisti: '+CAST[t]:'Protagonisti: non disponibili qui, vedi la scheda del film')+'</div>'}
+function acts(i,t){return '<div class="acts"><a class="act" href="https://www.youtube.com/results?search_query='+encodeURIComponent(t+' trailer ufficiale')+'" target="_blank" rel="noopener">▶ Trailer</a><button class="act" data-p="'+i+'">Trama e cast</button>'+lk(t)+'</div>'}
+function tr(t){return '<a class="tt" href="https://www.youtube.com/results?search_query='+encodeURIComponent(t+' trailer ufficiale')+'" target="_blank" rel="noopener" title="Guarda il trailer">▶ '+t+'</a>'}
+function lk(t){var u=LINK[t]?"https://www.mymovies.it/film/"+LINK[t]+"/":"https://www.google.com/search?q="+encodeURIComponent(t+" locandina film");return '<a class="lk" href="'+u+'" target="_blank" rel="noopener">'+(LINK[t]?'Locandina e scheda ↗':'Cerca locandina ↗')+'</a>'}
+var ORD=D.map(function(d,i){return i}).sort(function(a,b){var ra=RANK[D[a][0]]||99,rb=RANK[D[b][0]]||99;return ra-rb||a-b});
+function drawPlot(){if(st.f===null)return;var d=D[st.f];$("plot").innerHTML='<div class="t">'+tr(d[0])+'</div><div class="m">'+d[1]+'</div><p>'+(PLOT[d[0]]||'Trama non disponibile.')+'</p>'+starLine(d[0])+castLine(d[0])+awLine(d[0])+(INC[d[0]]?'<div class="m">Incassi in Italia: '+INC[d[0]]+'</div>':'')}
+var st={f:null,z:"Tutte",c:null,t:null,n:1};
+function $(i){return document.getElementById(i)}
+function eur(n){return n.toFixed(2).replace(".",",")+" €"}
+function shows(f){if(!D[f][2])return [];return D[f][2].split(";").map(function(p){var a=p.split(" ");return{c:a[0],t:a.slice(1)}})}
+function lab(t){var q=t.split("/"),x=q[0],o=x.slice(-1)=="v"?x.slice(0,-1)+" VO":x;return q[1]?o+" · sala "+q[1]:o}
+function drawFilms(){$("films").innerHTML=ORD.map(function(i){var d=D[i];return '<div class="fc"><button class="card'+(RANK[d[0]]?' top':'')+(AW[d[0]]?' win':'')+(st.f===i?' sel':'')+'" data-f="'+i+'">'+(RANK[d[0]]?'<div class="bd">★ n. '+RANK[d[0]]+' per incassi</div>':'')+'<div class="t">'+d[0]+'</div><div class="m">'+d[1]+' · '+(shows(i).length?shows(i).length+' cinema':'orari sul sito')+'</div>'+stars(d[0])+(AW[d[0]]?'<div class="aw">🏆 '+AW[d[0]]+'</div>':'')+'</button>'+acts(i,d[0])+'</div>'}).join("");
+document.querySelectorAll("[data-f]").forEach(function(b){b.onclick=function(){st.f=+b.dataset.f;st.c=null;st.t=null;st.z="Tutte";draw();openMod(st.f)}});
+document.querySelectorAll("[data-p]").forEach(function(b){b.onclick=function(){st.f=+b.dataset.p;st.c=null;st.t=null;st.z="Tutte";draw();openMod(st.f)}})}
+function drawZones(){var zs=["Tutte"];shows(st.f).forEach(function(s){var z=CIN[s.c][1];if(zs.indexOf(z)<0)zs.push(z)});
+$("zones").innerHTML=zs.map(function(z){return '<button class="chip'+(st.z==z?' sel':'')+'" data-z="'+z+'">'+z+'</button>'}).join("");
+document.querySelectorAll("[data-z]").forEach(function(b){b.onclick=function(){st.z=b.dataset.z;draw()}})}
+function drawShows(){var l=shows(st.f).filter(function(s){return st.z=="Tutte"||CIN[s.c][1]==st.z});
+$("shows").innerHTML=l.map(function(s){var c=CIN[s.c];return '<div class="cin"><div class="h"><div><div class="t cn">'+c[0]+'</div><div class="m">'+c[1]+'</div></div><div class="pr">'+(c[2]?'da '+eur(c[2]):'prezzo n.d.')+'</div></div><div class="times">'+s.t.map(function(t){return '<button class="tm'+(st.c==s.c&&st.t==t?' sel':'')+'" data-c="'+s.c+'" data-t="'+t+'">'+lab(t)+'</button>'}).join("")+'</div></div>'}).join("");
+document.querySelectorAll(".tm").forEach(function(b){b.onclick=function(){st.c=b.dataset.c;st.t=b.dataset.t;draw()}})}
+function drawTix(){if(!st.c)return;var c=CIN[st.c];$("who").textContent="Biglietto intero";$("price").textContent=c[2]?"da "+eur(c[2])+" a biglietto":"prezzo non disponibile";$("n").textContent=st.n;
+$("sum").textContent=D[st.f][0]+" · "+c[0]+" · "+lab(st.t);$("total").textContent=c[2]?"Totale da "+eur(c[2]*st.n):"Prezzo da verificare in sala"}
+function draw(){drawFilms();drawPlot();$("s2").hidden=st.f===null||!shows(st.f).length;$("s3").hidden=!st.c;if(st.f!==null){drawZones();drawShows()}drawTix()}
+var sc=null;
+function cinFilms(k){var m={};D.forEach(function(d,i){shows(i).forEach(function(s){if(s.c==k)m[i]=s.t})});return Object.keys(m).map(function(i){return{i:+i,t:m[i]}})}
+function norm(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+function drawSearch(){var q=norm($("q").value.trim()),ks=Object.keys(CIN).filter(function(k){return !q||norm(CIN[k][0]+" "+CIN[k][1]).indexOf(q)>=0}),h="";
+if(!ks.length){sc=null;h='<div class="m" style="margin-top:8px">Nessun cinema trovato.</div>'}
+else{if(ks.length==1)sc=ks[0];
+if(ks.length>1)h+='<div class="chips" style="margin-top:8px">'+ks.map(function(k){return '<button class="chip'+(sc==k?' sel':'')+'" data-k="'+k+'">'+CIN[k][0]+'</button>'}).join("")+'</div>';
+if(sc&&ks.indexOf(sc)>=0){var c=CIN[sc],l=cinFilms(sc);h+='<div class="cin" style="margin-top:10px"><div class="h"><div><div class="t cn">'+c[0]+'</div><div class="m">'+c[1]+'</div></div><div class="pr">'+(c[2]?'da '+eur(c[2]):'prezzo n.d.')+'</div></div>'+(l.length?l.map(function(f){return '<div style="margin-top:10px"><div class="t" style="font-size:15px">'+tr(D[f.i][0])+'</div><div class="m">'+D[f.i][1]+'</div><div class="times">'+f.t.map(function(t){return '<button class="tm" data-sf="'+f.i+'" data-st="'+t+'">'+lab(t)+'</button>'}).join("")+'</div></div>'}).join(""):'<div class="m" style="margin-top:8px">Nessuna proiezione oggi nei dati disponibili.</div>')+'</div>'}}
+$("cres").innerHTML=h;
+document.querySelectorAll("[data-k]").forEach(function(b){b.onclick=function(){sc=b.dataset.k;drawSearch()}});
+document.querySelectorAll("[data-sf]").forEach(function(b){b.onclick=function(){st.f=+b.dataset.sf;st.c=sc;st.t=b.dataset.st;st.z="Tutte";draw();$("s3").scrollIntoView({behavior:"smooth"})}})}
+var ADDR={ANT:"Via Guinizelli 3",BEL:"Via Bellinzona 6",CHA:"Piazza di Porta Saragozza 5/a",PER:"Via S. Donato 34/2",TIV:"Via Massarenti 418",CER:"Via Riva di Reno 72",EUR:"Via Pietralata 55/a",FOS:"Viale Abramo Lincoln 3",GAL:"Via Matteotti 27",LUM:"Via Azzo Gardino 65",MOD:"Piazza Re Enzo 1",NOS:"Via L. Berti 2/7",ODE:"Via Mascarella 3",ORI:"Via Cimabue 14",ARL:"Via Lame 59",BRI:"Via Toscana 146",JOL:"Via Marconi 14",MED:"Via Montegrappa 9",RIA:"Via Rialto 19",ROM:"Via Fondazza 4",SPA:"Viale Europa",KUR:"Via Mazzini 42, Alto Reno Terme",UMR:"Via Aldo Moro 14, Casalecchio di Reno",JCS:"Via Matteotti 99, Castel San Pietro Terme",DBC:"Via Marconi 5, Castello d’Argile",ITC:"Via Nasica 38, Castenaso",MAT:"Via del Corso 58, Castiglione dei Pepoli",VER:"P.le Porta Bologna 13, Crevalcore",CAP:"Via Villa Clelia 12, Imola",CBC:"Via Emilia 212, Imola",PED:"Via A. Vivaldi 70, Imola",OSS:"Via Venturini, Imola",CRI:"Via Appia 30, Imola",DFI:"Viale Marconi 31, Imola",PRG:"Via Marconi, Lizzano in Belvedere",VIT:"Via Roma 55, Loiano",NMA:"Via Barche 6, Minerbio",MAS:"Via Mazzini 85, Molinella",AUR:"Via Vittorio Emanuele II 37, Monghidoro",MSC:"Via Serrabella 1, Pianoro",AGO:"Via Gramsci 51, Sala Bolognese",GIA:"Via Circonvallazione Dante 54, San Giovanni in Persiceto",ISP:"Piazza Giovanni XXIII 6, San Pietro in Casale",CEC:"Via Alcide De Gasperi 2, Sant’Agata Bolognese",MRC:"Piazza dei Martiri 6, Sasso Marconi",AST:"Via Mazzini 14, Valsamoggia",CMX:"Viale Carducci 17, Valsamoggia",NVE:"Via Garibaldi 5, Vergato"};
+function addrLine(k){var a=ADDR[k],q=encodeURIComponent(CIN[k][0]+(a?' '+a:'')+' Bologna');return '<div class="m">'+(a?a+' · ':'')+'<a class="lk" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+q+'">📍 Mappa ↗</a></div>'}
+function modShows(i){var l=shows(i);if(!l.length)return '<div style="margin:16px 0 8px"><a class="lk" style="font-size:15px" target="_blank" rel="noopener" href="https://www.mymovies.it/cinema/bologna/provincia/?f='+MID[D[i][0]]+'">🕒 Orari di oggi a Bologna ↗</a></div>';return '<h2 style="margin:16px 0 8px;color:var(--tx)">Cinema e orari di oggi</h2>'+l.map(function(s){var c=CIN[s.c];return '<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;gap:8px"><div><b class="cn" style="font:700 14px system-ui,sans-serif">'+c[0]+'</b> <span class="m">'+c[1]+'</span>'+addrLine(s.c)+'</div><span class="pr">'+(c[2]?'da '+eur(c[2]):'')+'</span></div><div class="times">'+s.t.map(function(t){return '<button class="tm" data-mc="'+s.c+'" data-mt="'+t+'">'+lab(t)+'</button>'}).join("")+'</div></div>'}).join("")}
+function closeMod(){$("mod").hidden=true}
+function openMod(i){var d=D[i];$("mc").innerHTML='<div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px 14px;padding-right:36px"><div class="t" style="font-size:18px">'+tr(d[0])+'</div>'+lk(d[0])+'</div><div class="m">'+d[1]+'</div>'+starLine(d[0])+'<p>'+(PLOT[d[0]]||'Trama non disponibile.')+'</p>'+castLine(d[0])+awLine(d[0])+(INC[d[0]]?'<div class="m" style="margin-top:6px">Incassi in Italia: '+INC[d[0]]+'</div>':'')+modShows(i);$("mod").hidden=false;document.querySelectorAll("#mc [data-mc]").forEach(function(b){b.onclick=function(){st.f=i;st.c=b.dataset.mc;st.t=b.dataset.mt;st.z="Tutte";closeMod();draw();$("s3").scrollIntoView({behavior:"smooth"})}})}
+$("mx").onclick=closeMod;$("mod").onclick=function(e){if(e.target===$("mod"))closeMod()};document.addEventListener("keydown",function(e){if(e.key=="Escape")closeMod()});
+$("go").onclick=drawSearch;
+$("q").oninput=function(){sc=null;if($("q").value.trim())drawSearch();else $("cres").innerHTML=""};
+$("q").onkeydown=function(e){if(e.key=="Enter")drawSearch()};
+$("mi").onclick=function(){st.n=Math.max(1,st.n-1);draw()};
+$("pl").onclick=function(){st.n=Math.min(10,st.n+1);draw()};
+$("buy").onclick=function(){alert("Prenotazione di esempio: "+st.n+" biglietti. Nessun pagamento reale.")};
+var ks=Object.keys(CIN);$("cnt").textContent=ks.length;
+$("all").innerHTML=ks.map(function(k){return CIN[k][0]+" ("+CIN[k][1]+")"}).join(" · ");
+draw();
+</script>
+</body>
+</html>
