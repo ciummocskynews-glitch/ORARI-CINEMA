@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 """Aggiorna gli orari dei cinema (Roma e Bologna) nelle pagine in docs/.
 
@@ -178,6 +179,20 @@ def tkey(t):
 
 JS_STR = r'"(?:[^"\\]|\\.)*"'
 
+# Collega docs/extra.js (trame, cast e generi aggiuntivi) alle pagine, se non e' gia' collegato.
+EXTRA_MERGE = r'''if(window.EXTRA){(function(){function nk(s){return s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim()}var maps={PLOT:PLOT,CAST:CAST,AW:AW,INC:INC,CRIT:CRIT};Object.keys(maps).forEach(function(k){var e=EXTRA[k]||{};Object.keys(e).forEach(function(t){maps[k][t]=e[t];var n=nk(t);D.forEach(function(d){if(nk(d[0])===n)maps[k][d[0]]=e[t]})})});var g=EXTRA.GEN||{};D.forEach(function(d){var n=Object.keys(g).filter(function(t){return nk(t)===nk(d[0])})[0];if(n&&(!d[1]||d[1]==="In programmazione"))d[1]=g[n]})})()}
+'''
+
+
+def ensure_extra(html):
+    if "extra.js" in html:
+        return html
+    html = html.replace("<script>", '<script src="extra.js"></script>\n<script>', 1)
+    marker = '$("go").onclick=drawSearch;'
+    if marker in html:
+        html = html.replace(marker, EXTRA_MERGE + marker, 1)
+    return html
+
 
 def apply(html, films, city_name, today, nott=None):
     block = re.search(r"/\*DATA_START\*/(.*?)/\*DATA_END\*/", html, re.S)
@@ -263,6 +278,7 @@ def apply(html, films, city_name, today, nott=None):
             "Il prezzo è indicato solo dove il sito lo riporta. La prenotazione è dimostrativa, non fa nessun pagamento. "
             "“VO” indica la versione originale con sottotitoli.")
     html = re.sub(r'<p class="note">.*?</p>', lambda m: '<p class="note">' + note + "</p>", html, count=1, flags=re.S)
+    html = ensure_extra(html)
     return html, with_times
 
 
@@ -314,3 +330,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+        
+
+
+
+   
+ 
+    
+     
+   
+
+
+        
+               
+
