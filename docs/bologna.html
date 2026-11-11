@@ -88,7 +88,7 @@ body::before{content:"";position:absolute;top:0;left:0;right:0;height:52px;z-ind
 <body>
 <main>
 <h1>🎬 Cinema a Bologna <span class="by">by Claudio</span></h1>
-<div class="sub">Programmazione di martedì 10 novembre 2026. Scegli film, cinema e orario.</div>
+<div class="sub">Programmazione di mercoledì 11 novembre 2026. Scegli film, cinema e orario.</div>
 <h2 style="color:var(--tx)">Cerca cinema</h2>
 <div class="srch"><input id="q" type="search" placeholder="Nome del cinema o zona, es. Rialto" autocomplete="off"><button id="go">Cerca</button></div>
 <div id="cres"></div>
@@ -106,7 +106,7 @@ body::before{content:"";position:absolute;top:0;left:0;right:0;height:52px;z-ind
 </div>
 <div id="mod" hidden><div class="mbox"><button id="mx" aria-label="Chiudi">✕</button><div id="mc"></div></div></div>
 <details><summary>Tutti i cinema di Bologna (<span id="cnt"></span>)</summary><div id="all" class="m" style="margin-top:8px;line-height:1.8"></div></details>
-<p class="note">Orari di martedì 10 novembre 2026, presi da MyMovies, aggiornati in automatico ogni giorno. Sono aggiornati 18 film: gli altri hanno la scritta «orari sul sito» e, nella scheda, il link agli orari di oggi su MyMovies. Gli incassi sono totali in Italia e non si aggiornano da soli. Il prezzo è indicato solo dove il sito lo riporta. La prenotazione è dimostrativa, non fa nessun pagamento. “VO” indica la versione originale con sottotitoli.</p>
+<p class="note">Orari di mercoledì 11 novembre 2026, presi da MyMovies, aggiornati in automatico ogni giorno. Sono aggiornati 18 film: gli altri hanno la scritta «orari sul sito» e, nella scheda, il link agli orari di oggi su MyMovies. Gli incassi sono totali in Italia e non si aggiornano da soli. Il prezzo è indicato solo dove il sito lo riporta. La prenotazione è dimostrativa, non fa nessun pagamento. “VO” indica la versione originale con sottotitoli.</p>
 </main>
 <script src="extra.js"></script>
 <script>
@@ -114,9 +114,9 @@ var CIN={ANT:["Antoniano","Saragozza"],BEL:["Bellinzona d’Essai","Altre zone"]
 /*DATA_START*/var D=[
 ["Ragione e Sentimento","Drammatico",""],
 ["Caro mondo crudele","Drammatico",""],
-["Primetime","Drammatico",""],
-["Clayface","Horror · Azione (VM 14)","SPA 18:50"],
-["Wildwood – I segreti del bosco proibito","Animazione","SPA 15:15"],
+["Primetime","Drammatico","ARL 19:15"],
+["Clayface","Horror · Azione (VM 14)","SPA 15:45 18:50 21:15"],
+["Wildwood – I segreti del bosco proibito","Animazione","SPA 17:55"],
 ["L’assurda storia della Gialappa’s Band","Documentario",""],
 ["Je So’ Pazzo","Biografico",""],
 ["Urchin","Drammatico",""],
@@ -138,7 +138,7 @@ var CIN={ANT:["Antoniano","Saragozza"],BEL:["Bellinzona d’Essai","Altre zone"]
 ["Whalefall – Nella Balena","Thriller · Avventura",""],
 ["Odissea","Avventura · Azione · Storico",""],
 ["Coyote vs. Acme","Animazione · Commedia",""],
-["The Invite – Il piacere è tutto nostro","Commedia · Drammatico",""],
+["The Invite – Il piacere è tutto nostro","Commedia · Drammatico","SPA 21:00v"],
 ["Calle Malaga","Drammatico",""],
 ["Palestina 36 – Quando tutto ebbe inizio","Drammatico · Storico",""],
 ["Ritorno a Buenos Aires","Drammatico",""],
@@ -155,7 +155,7 @@ var CIN={ANT:["Antoniano","Saragozza"],BEL:["Bellinzona d’Essai","Altre zone"]
 ["Auber 89","In programmazione",""],
 ["I diavoli (1970)","Drammatico",""],
 ["La Maison des Femmes - La casa delle donne","In programmazione",""],
-["It Ends","In programmazione","ARL 16:00 19:15 20:00"],
+["It Ends","In programmazione","ARL 21:30;SPA 15:45 16:00 20:00"],
 ["Making Marie Antoinette","In programmazione",""],
 ["Il canto di Alina","In programmazione",""],
 ["I diavoli","In programmazione",""],
@@ -166,20 +166,20 @@ var CIN={ANT:["Antoniano","Saragozza"],BEL:["Bellinzona d’Essai","Altre zone"]
 ["Carla Lonzi - Dentro e fuori dal mondo","In programmazione",""],
 ["Il dottor Stranamore, ovvero: come imparai a non preoccuparmi e ad amare la bomba","In programmazione",""],
 ["Resident Evil","In programmazione",""],
-["Va' sentiero","In programmazione","NOS 21:15"],
+["Va' sentiero","In programmazione",""],
 ["Essi vivono","In programmazione",""],
 ["Tomorrow X Together World Tour Act: Tomorrow","In programmazione",""],
 ["Una storia","In programmazione",""],
 ["La Gradiva","In programmazione",""],
-["Un tranquillo funerale di famiglia","In programmazione","SPA 15:00 17:45 18:30 21:15 22:30"],
+["Un tranquillo funerale di famiglia","In programmazione","SPA 15:15 17:45 21:00 21:15 21:50"],
 ["L'infernale Quinlan","In programmazione",""],
-["Wild Horse Nine","In programmazione","MED 16:15 19:00v 21:30;NOS 19:00 21:10;SPA 16:25 17:00 18:10 19:00 19:15 20:55 21:10 21:15"],
+["Wild Horse Nine","In programmazione","MED 16:15v 19:00 21:30v;BEL 21:00;NOS 19:00 21:10;SPA 16:15 18:10 18:25 19:00 19:40v 20:50 21:00 21:10 21:15"],
 ["The Bibi Files","In programmazione",""],
-["Shaun, Vita da Pecora: Operazione Z.U.C.C.A.","In programmazione","SPA 15:45 16:40 17:30"],
+["Shaun, Vita da Pecora: Operazione Z.U.C.C.A.","In programmazione","SPA 15:00 17:15 17:20"],
 ["Ozzy & Black Sabbath - Back To the Beginning","In programmazione",""],
-["Dio Ride","In programmazione","NOS 19:00;JOL 14:30 16:45 19:00 21:15;SPA 14:30 15:30 16:00 18:20 21:00 21:15 21:50"],
+["Dio Ride","In programmazione","NOS 19:00 21:10;JOL 14:30 16:45 19:00 21:15;SPA 14:30 15:30 16:00 18:20 19:30 19:50 21:00 21:15"],
 ["Strange Journey: The Story of Rocky Horror","In programmazione",""],
-["Ice Cream Man","In programmazione","SPA 21:15 22:10 22:50"],
+["Ice Cream Man","In programmazione","SPA 21:15 22:10"],
 ["The Rocky Horror Picture Show","In programmazione",""],
 ["Quello che resta di noi","In programmazione",""],
 ["Fast & Furious","In programmazione",""],
@@ -190,17 +190,17 @@ var CIN={ANT:["Antoniano","Saragozza"],BEL:["Bellinzona d’Essai","Altre zone"]
 ["Nessun dolore","In programmazione",""],
 ["I figli della scimmia","In programmazione",""],
 ["M - Il mostro di Düsseldorf","In programmazione",""],
-["Se domani non torno","In programmazione","SPA 16:15 16:30 17:40 18:00 18:30 19:00 19:30 19:40 20:30 21:00 21:15 21:30 22:05"],
-["The Nameless Ballad","In programmazione","SPA 22:00 22:10"],
+["Se domani non torno","In programmazione","BRI 18:30 21:00;SPA 16:00 16:30 17:40 18:00 18:30 19:00 19:55 20:30 21:00 21:15 21:30 22:00 22:35"],
+["The Nameless Ballad","In programmazione","SPA 22:15 22:20"],
 ["Ferine","In programmazione",""],
 ["Santiago - Un cammino per ricominciare","In programmazione",""],
-["Hope","In programmazione","SPA 18:40 20:30 21:15"],
-["George Michael - The Faith Tour","In programmazione","SPA 16:45v 19:45v 21:00v 21:15v"],
+["Hope","In programmazione","SPA 16:30 18:40 20:30 21:30 21:40"],
+["George Michael - The Faith Tour","In programmazione","SPA 18:45v 20:40v 21:00v 21:01v 21:15v"],
 ["Verity","In programmazione",""],
 ["Stray Kids - World Tour - Run It - Live Viewing","In programmazione",""],
 ["Minnie e Moskowitz","In programmazione",""],
-["La venere elettrica","In programmazione","BEL 17:00 21:00v;MOD 21:00"],
-["La città dei vivi","In programmazione","SPA 21:00"],
+["La venere elettrica","In programmazione",""],
+["La città dei vivi","In programmazione","SPA 15:00 21:00"],
 ["Trainspotting","In programmazione","SPA 18:30"]
 ];
 var MID={"Ragione e Sentimento": 119812, "Caro mondo crudele": 117642, "Primetime": 119926, "Clayface": 119272, "Wildwood – I segreti del bosco proibito": 119652, "L’assurda storia della Gialappa’s Band": 120011, "Je So’ Pazzo": 117413, "Urchin": 117165, "Klara e il Sole": 119755, "L’estranea": 117852, "Naza": 120067, "Fatherland": 119436, "Se ami qualcuno dillo": 119329, "Mammina": 119811, "Il tempo di Anne": 120109, "La bambola": 119839, "Carlo Acutis – Il giovane santo": 120014, "Taddeo l’Esploratore e la Lampada Magica": 120306, "Zustissia": 119996, "Digger": 117339, "Frankie e le creature dimenticate": 117644, "Street Fighter": 118678, "Heart of the Beast – Nel profondo selvaggio": 119749, "Whalefall – Nella Balena": 119527, "Odissea": 116468, "Coyote vs. Acme": 119782, "The Invite – Il piacere è tutto nostro": 119773, "Calle Malaga": 117106, "Palestina 36 – Quando tutto ebbe inizio": 118130, "Ritorno a Buenos Aires": 119928, "Serpenti": 119960, "Rider": 119880, "Possible Love": 119937, "Un po’ di luce": 119914, "Maigret, l’amore e la morte": 120078, "L’albero di molto lontano": 119799, "The Social – Il prezzo della verità": 118233, "The Echo Chamber": 119633, "Un giorno senza donne": 120074, "Bad Apples": 120115, "Auber 89": 120056, "I diavoli (1970)": 7385, "La Maison des Femmes - La casa delle donne": 120064, "It Ends": 120020, "Making Marie Antoinette": 120161, "Il canto di Alina": 118244, "I diavoli": 7385, "Jumbo": 120147, "L'Isola dei Ricordi": 119270, "Tony - Diario di un giovane cuoco": 119820, "Matrix": 29287, "Carla Lonzi - Dentro e fuori dal mondo": 120013, "Il dottor Stranamore, ovvero: come imparai a non preoccuparmi e ad amare la bomba": 8204, "Resident Evil": 119624, "Va' sentiero": 120316, "Essi vivono": 28880, "Tomorrow X Together World Tour Act: Tomorrow": 120348, "Una storia": 119290, "La Gradiva": 119518, "Un tranquillo funerale di famiglia": 119538, "L'infernale Quinlan": 11992, "Wild Horse Nine": 119528, "The Bibi Files": 116651, "Shaun, Vita da Pecora: Operazione Z.U.C.C.A.": 119863, "Ozzy & Black Sabbath - Back To the Beginning": 120134, "Dio Ride": 119862, "Strange Journey: The Story of Rocky Horror": 117667, "Ice Cream Man": 103663, "The Rocky Horror Picture Show": 21098, "Quello che resta di noi": 120314, "Fast & Furious": 33666, "Dracula di Bram Stoker": 8255, "Il Gatto col Cappello": 117688, "Hybe Cheering Party": 120375, "Bts World Tour Arirang Live in Sao Paulo": 120374, "Nessun dolore": 119251, "I figli della scimmia": 119913, "M - Il mostro di Düsseldorf": 13637, "Se domani non torno": 118757, "The Nameless Ballad": 117821, "Ferine": 118626, "Santiago - Un cammino per ricominciare": 119028, "Hope": 114749, "George Michael - The Faith Tour": 120090, "Verity": 119616, "Stray Kids - World Tour - Run It - Live Viewing": 120237, "Minnie e Moskowitz": 14917, "La venere elettrica": 119390, "La città dei vivi": 119376, "Trainspotting": 25508};
