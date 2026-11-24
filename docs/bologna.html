@@ -88,7 +88,7 @@ body::before{content:"";position:absolute;top:0;left:0;right:0;height:52px;z-ind
 <body>
 <main>
 <h1>🎬 Cinema a Bologna <span class="by">by Claudio</span></h1>
-<div class="sub">Programmazione di lunedì 23 novembre 2026. Scegli film, cinema e orario.</div>
+<div class="sub">Programmazione di martedì 24 novembre 2026. Scegli film, cinema e orario.</div>
 <h2 style="color:var(--tx)">Cerca cinema</h2>
 <div class="srch"><input id="q" type="search" placeholder="Nome del cinema o zona, es. Rialto" autocomplete="off"><button id="go">Cerca</button></div>
 <div id="cres"></div>
@@ -106,13 +106,13 @@ body::before{content:"";position:absolute;top:0;left:0;right:0;height:52px;z-ind
 </div>
 <div id="mod" hidden><div class="mbox"><button id="mx" aria-label="Chiudi">✕</button><div id="mc"></div></div></div>
 <details><summary>Tutti i cinema di Bologna (<span id="cnt"></span>)</summary><div id="all" class="m" style="margin-top:8px;line-height:1.8"></div></details>
-<p class="note">Orari di lunedì 23 novembre 2026, presi da MyMovies, aggiornati in automatico ogni giorno. Sono aggiornati 21 film: gli altri hanno la scritta «orari sul sito» e, nella scheda, il link agli orari di oggi su MyMovies. Gli incassi sono totali in Italia e non si aggiornano da soli. Il prezzo è indicato solo dove il sito lo riporta. La prenotazione è dimostrativa, non fa nessun pagamento. “VO” indica la versione originale con sottotitoli.</p>
+<p class="note">Orari di martedì 24 novembre 2026, presi da MyMovies, aggiornati in automatico ogni giorno. Sono aggiornati 18 film: gli altri hanno la scritta «orari sul sito» e, nella scheda, il link agli orari di oggi su MyMovies. Gli incassi sono totali in Italia e non si aggiornano da soli. Il prezzo è indicato solo dove il sito lo riporta. La prenotazione è dimostrativa, non fa nessun pagamento. “VO” indica la versione originale con sottotitoli.</p>
 </main>
 <script src="extra.js"></script>
 <script>
 var CIN={ANT:["Antoniano","Saragozza"],BEL:["Bellinzona d’Essai","Altre zone"],CHA:["Chaplin","Saragozza"],PER:["Cinema Perla","San Donato"],TIV:["Cinema Teatro Tivoli","San Donato"],CER:["Cineteca – Sala Cervi","Centro"],EUR:["Europa cinema","Altre zone",10],FOS:["Fossolo","Savena"],GAL:["Galliera","Navile"],LUM:["Lumiere","Navile"],MOD:["Modernissimo","Centro"],NOS:["Nuovo Nosadella","Centro"],ODE:["Odeon","Centro",10],ORI:["Orione","Borgo Panigale"],ARL:["Pop Up Cinema Arlecchino","Navile",7.29],BRI:["Pop Up Cinema Bristol","Savena",7.29],JOL:["Pop Up Cinema Jolly","Centro",7.29],MED:["Pop Up Cinema Medica 4K","Centro",7.29],RIA:["Rialto studio","Centro",10],ROM:["Roma d’Essai","Centro",10],SPA:["The Space Cinema Bologna","Altre zone",10.9],KUR:["Kursaal","Alto Reno Terme"],UMR:["UCI Cinemas Meridiana","Casalecchio di Reno"],JCS:["Jolly (Castel San Pietro)","Castel San Pietro Terme"],DBC:["Don Bosco (Castello d’Argile)","Castello d’Argile"],ITC:["Italia (Castenaso)","Castenaso"],MAT:["Mattei","Castiglione dei Pepoli"],VER:["Verdi","Crevalcore"],CAP:["Cappuccini","Imola"],CBC:["Centrale – Sala BCC","Imola"],PED:["Cinema Pedagna","Imola"],OSS:["Cinema Teatro Osservanza","Imola"],CRI:["Cristallo","Imola"],DFI:["Don Fiorentini Cinema Teatro","Imola"],PRG:["La Pergola","Lizzano in Belvedere"],VIT:["Vittoria","Loiano"],NMA:["Nuovo Mandrioli","Minerbio"],MAS:["Massarenti","Molinella"],AUR:["Aurora","Monghidoro"],MSC:["Madison Cinemas Star City","Pianoro"],AGO:["Agorà Estivo","Sala Bolognese"],GIA:["Giada Cinecomfort Bi-Space","San Giovanni in Persiceto"],ISP:["Italia (San Pietro in Casale)","San Pietro in Casale"],CEC:["Century CineCi","Sant’Agata Bolognese"],MRC:["Marconi","Sasso Marconi"],AST:["Astra/Star Multisala","Valsamoggia"],CMX:["Cinemax","Valsamoggia"],NVE:["Nuovo Vergato","Vergato"]};
 /*DATA_START*/var D=[
-["Ragione e Sentimento","Drammatico",""],
+["Ragione e Sentimento","Drammatico","SPA 21:50"],
 ["Caro mondo crudele","Drammatico","SPA 21:00"],
 ["Primetime","Drammatico",""],
 ["Clayface","Horror · Azione (VM 14)",""],
@@ -130,12 +130,12 @@ var CIN={ANT:["Antoniano","Saragozza"],BEL:["Bellinzona d’Essai","Altre zone"]
 ["La bambola","Commedia",""],
 ["Carlo Acutis – Il giovane santo","Documentario",""],
 ["Taddeo l’Esploratore e la Lampada Magica","Animazione · Avventura",""],
-["Zustissia","Drammatico","SPA 18:50"],
+["Zustissia","Drammatico",""],
 ["Digger","Commedia · Drammatico",""],
 ["Frankie e le creature dimenticate","Animazione · Avventura",""],
 ["Street Fighter","Azione · Avventura",""],
 ["Heart of the Beast – Nel profondo selvaggio","Azione · Avventura · Thriller",""],
-["Whalefall – Nella Balena","Thriller · Avventura","SPA 23:00"],
+["Whalefall – Nella Balena","Thriller · Avventura",""],
 ["Odissea","Avventura · Azione · Storico",""],
 ["Coyote vs. Acme","Animazione · Commedia",""],
 ["The Invite – Il piacere è tutto nostro","Commedia · Drammatico",""],
@@ -173,24 +173,24 @@ var CIN={ANT:["Antoniano","Saragozza"],BEL:["Bellinzona d’Essai","Altre zone"]
 ["La Gradiva","In programmazione",""],
 ["Un tranquillo funerale di famiglia","In programmazione",""],
 ["L'infernale Quinlan","In programmazione",""],
-["Wild Horse Nine","In programmazione","MED 18:30;SPA 20:45 21:15"],
+["Wild Horse Nine","In programmazione","MED 18:30;NOS 21:10;SPA 20:45 21:15"],
 ["The Bibi Files","In programmazione",""],
 ["Shaun, Vita da Pecora: Operazione Z.U.C.C.A.","In programmazione","SPA 15:00 17:00"],
 ["Ozzy & Black Sabbath - Back To the Beginning","In programmazione",""],
-["Dio Ride","In programmazione","JOL 14:30 19:00"],
+["Dio Ride","In programmazione","NOS 19:00;JOL 16:45 21:15"],
 ["Strange Journey: The Story of Rocky Horror","In programmazione",""],
 ["Ice Cream Man","In programmazione",""],
-["The Rocky Horror Picture Show","In programmazione","MOD 22:15"],
+["The Rocky Horror Picture Show","In programmazione",""],
 ["Quello che resta di noi","In programmazione",""],
 ["Fast & Furious","In programmazione",""],
 ["Dracula di Bram Stoker","In programmazione",""],
-["Il Gatto col Cappello","In programmazione","SPA 16:50 17:15 19:45"],
+["Il Gatto col Cappello","In programmazione","SPA 17:05 17:15 19:45"],
 ["Hybe Cheering Party","In programmazione",""],
 ["Bts World Tour Arirang Live in Sao Paulo","In programmazione",""],
 ["Nessun dolore","In programmazione",""],
 ["I figli della scimmia","In programmazione",""],
 ["M - Il mostro di Düsseldorf","In programmazione",""],
-["Se domani non torno","In programmazione","JOL 16:45 21:15;SPA 15:45 16:20 18:30 19:45 21:00 21:15 21:20 22:25"],
+["Se domani non torno","In programmazione","JOL 14:30 19:00;SPA 15:45 16:00 16:20 17:45 18:50 21:00 21:15 21:30 22:25"],
 ["The Nameless Ballad","In programmazione",""],
 ["Ferine","In programmazione",""],
 ["Santiago - Un cammino per ricominciare","In programmazione",""],
@@ -198,18 +198,18 @@ var CIN={ANT:["Antoniano","Saragozza"],BEL:["Bellinzona d’Essai","Altre zone"]
 ["George Michael - The Faith Tour","In programmazione",""],
 ["Verity","In programmazione",""],
 ["Stray Kids - World Tour - Run It - Live Viewing","In programmazione",""],
-["Minnie e Moskowitz","In programmazione","MOD 20:00"],
+["Minnie e Moskowitz","In programmazione",""],
 ["La venere elettrica","In programmazione",""],
 ["La città dei vivi","In programmazione",""],
 ["Trainspotting","In programmazione",""],
 ["Look Back","In programmazione",""],
-["Scrooge e gli Spiriti del Natale","In programmazione","SPA 16:30 17:50 19:20 19:50 21:15 22:00 22:10 23:00"],
+["Scrooge e gli Spiriti del Natale","In programmazione","NOS 21:10;SPA 15:15 16:30 19:20 19:50 21:15 22:00 22:10 23:00"],
 ["Come rapinare una banca","In programmazione",""],
-["Il rumore delle cose nuove","In programmazione","SPA 16:00 16:15 20:30 21:15 22:20"],
+["Il rumore delle cose nuove","In programmazione","SPA 16:15 16:45 18:45 20:30 21:15"],
 ["En el camino","In programmazione",""],
-["Un weekend artificiale","In programmazione","SPA 15:15 16:00 21:00 21:15 22:30"],
-["Godzilla Minus Zero","In programmazione","ARL 16:30 21:50"],
-["Fjord","In programmazione","SPA 18:00 19:50 21:00"],
+["Un weekend artificiale","In programmazione","SPA 15:30 16:00 21:00 21:15 22:30"],
+["Godzilla Minus Zero","In programmazione","ARL 14:00 22:45"],
+["Fjord","In programmazione","SPA 18:00 19:50"],
 ["I racconti del giardino incantato","In programmazione",""],
 ["La doppia vita di Veronica","In programmazione",""],
 ["Balcanica","In programmazione",""],
@@ -217,9 +217,9 @@ var CIN={ANT:["Antoniano","Saragozza"],BEL:["Bellinzona d’Essai","Altre zone"]
 ["Mustang","In programmazione","SPA 18:00 20:30"],
 ["2001: Odissea nello spazio","In programmazione",""],
 ["La storia infinita","In programmazione",""],
-["La ballata del Re delle api","In programmazione","ARL 18:55 21:30v;SPA 17:30"],
-["Hunger Games - L'alba sulla mietitura","In programmazione","MED 15:30 21:00v;SPA 16:00 16:30 16:40 17:20 17:40 18:15 18:30v 19:00 19:10 20:00 20:45 21:00 21:10 21:45 22:30"],
-["Ramayana - La Nascita di una Leggenda","In programmazione","SPA 15:30"],
+["La ballata del Re delle api","In programmazione","ARL 16:30 19:00;SPA 17:30"],
+["Hunger Games - L'alba sulla mietitura","In programmazione","MED 15:30 21:00v;SPA 16:30 16:40 17:20 17:40 18:15 18:30v 19:00 19:10 20:00 20:30 20:45 21:00 21:10 21:50 22:30"],
+["Ramayana - La Nascita di una Leggenda","In programmazione","SPA 15:25"],
 ["Era meglio domani","In programmazione",""],
 ["Ti presento i Fotter","In programmazione",""],
 ["Bts World Tour Arirang in Kaohsiung: Live Viewing","In programmazione",""],
